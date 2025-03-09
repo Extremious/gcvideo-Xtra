@@ -40,7 +40,7 @@
 #include "settings.h"
 
 #define RESBOX_TIME (5 * HZ)
-#define RESBOX_X    28
+#define RESBOX_X    5
 #define RESBOX_Y    2
 #define RESBOX_XS   12
 #define RESBOX_YS   3
