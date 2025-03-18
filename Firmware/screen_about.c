@@ -62,7 +62,7 @@ enum {
 static void about_draw(menu_t *menu);
 
 static menuitem_t about_items[] = {
-  { "Update Firmware", NULL, 7, 0 },
+  { "Update",          NULL, 7, 0 },
   { "Back",            NULL, 8, 0 },
 };
 
@@ -75,13 +75,11 @@ static menu_t about_menu = {
 };
 
 static void about_draw(menu_t *menu) {
-  int ver_len = strlen(VERSION);
-
   if (MODE_WII) {
     if (DUAL_OUT) {
-      osd_putsat(11 + (23 - (15 + ver_len)) / 2, 10, "WiiVideo Dual v" VERSION);
-    } else { //                                       123456789012345
-      osd_putsat(11 + (23 - (14 + ver_len)) / 2, 10, "WiiVideo DVI v" VERSION);
+      osd_putsat(12, 10, "WiiVideo Dual v" VERSION);
+    } else {
+      osd_putsat(13, 10, "WiiVideo DVI v" VERSION);
     }
 
     if (VIDEOIF->flags & VIDEOIF_FLAG_MODE_WII) {
@@ -92,9 +90,9 @@ static void about_draw(menu_t *menu) {
 
   } else {
     if (DUAL_OUT) {
-      osd_putsat(11 + (23 - (14 + ver_len)) / 2, 10, "GCVideo Dual v" VERSION);
-    } else { //                                       12345678901234
-      osd_putsat(11 + (23 - (13 + ver_len)) / 2, 10, "GCVideo DVI v" VERSION);
+      osd_putsat(13, 10, "GCVideo Dual v" VERSION);
+    } else {
+      osd_putsat(13, 10, "GCVideo DVI v" VERSION);
     }
   }
   osd_putsat(12, 12, "Copyright \013 2015-2021");
