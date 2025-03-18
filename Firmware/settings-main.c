@@ -39,7 +39,7 @@
 #include "vsync.h"
 #include "settings.h"
 
-#define SETTINGS_VERSION 6 // bump if current reader cannot read older settings anymore
+#define SETTINGS_VERSION 7 // bump if current reader cannot read older settings anymore
 
 typedef struct {
   uint8_t  version;
@@ -61,11 +61,15 @@ typedef struct {
   int8_t   saturation;
   int8_t   xshift;
   int8_t   yshift;
+  uint8_t  resbox_x;
+  uint8_t  resbox_y;
   // scanline settings are stored seperately
 } storedsettings_t;
 
 #define STOREDSET_MUTE    (1<<0)
 #define STOREDSET_CROP486 (1<<1)
+#define RESBOX_X          28
+#define RESBOX_Y          2
 
 /* number of lines per frame in each video mode */
 /* order matters! even are 60Hz, odd are 50Hz   */
@@ -106,6 +110,8 @@ uint16_t     scanline_strength;
 uint16_t     scanline_hybrid;
 minibool     scanline_custom;
 minibool     crop_486_to_480;
+uint8_t      resbox_x;
+uint8_t      resbox_y;
 
 static uint16_t current_setid;
 
@@ -265,6 +271,8 @@ void settings_load(void) {
   picture_saturation = set.st.saturation;
   screen_x_shift     = set.st.xshift;
   screen_y_shift     = set.st.yshift;
+  resbox_x           = set.st.resbox_x;
+  resbox_y           = set.st.resbox_y;
 
   spiflash_start_read(SETTINGS_OFFSET + ((current_setid + 2) << 8));
   for (unsigned int i = 256; i < SCANLINERAM_ENTRIES; i ++) {
@@ -301,6 +309,8 @@ void settings_save(void) {
   set.st.saturation            = picture_saturation;
   set.st.xshift                = screen_x_shift;
   set.st.yshift                = screen_y_shift;
+  set.st.resbox_x              = resbox_x;
+  set.st.resbox_y              = resbox_y;
 
   memcpy(set.st.ir_codes, ir_codes, sizeof(ir_codes));
   memcpy(set.st.video_settings, video_settings, sizeof(video_settings));
@@ -355,6 +365,8 @@ void settings_save(void) {
 
 void settings_init(void) {
   resbox_enabled = true;
+  resbox_x       = RESBOX_X;
+  resbox_y       = RESBOX_Y;
 
   video_settings_global = VIDEOIF_SET_ENABLEREBLANK | VIDEOIF_SET_ENABLERESYNC |
                           VIDEOIF_SET_CABLEDETECT   | VIDEOIF_SET_CHROMAINTERP;

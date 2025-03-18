@@ -301,7 +301,7 @@ move the 480 line window that GCVideo shows within GBI's 486-line signal.
 
 The OSD settings menu has an option to disable the mode popup that shows for
 five secends whenever the console changes its output resolution as well
-as three settings to change the color and transparency of the OSD background.
+as two settings "X Position" and "Y Position" to change the popup location.
 
 ![OSD Settings menu](doc/osd.png)
 

@@ -40,8 +40,6 @@
 #include "settings.h"
 
 #define RESBOX_TIME (5 * HZ)
-#define RESBOX_X    5
-#define RESBOX_Y    2
 #define RESBOX_XS   12
 #define RESBOX_YS   3
 
@@ -92,8 +90,8 @@ void screen_idle(void) {
         resbox_timeout = now + RESBOX_TIME;
         resbox_active  = true;
 
-        osd_drawborder(RESBOX_X, RESBOX_Y, RESBOX_XS, RESBOX_YS);
-        osd_gotoxy(RESBOX_X + 1, RESBOX_Y + 1);
+        osd_drawborder(resbox_x, resbox_y, RESBOX_XS, RESBOX_YS);
+        osd_gotoxy(resbox_x + 1, resbox_y + 1);
         osd_setattr(true, false);
  
         print_resolution();

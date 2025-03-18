@@ -40,6 +40,8 @@
 
 enum {
   MENUITEM_RESBOX,
+  MENUITEM_RESBOX_X,
+  MENUITEM_RESBOX_Y,
   MENUITEM_ALPHA,
   MENUITEM_TINTCB,
   MENUITEM_TINTCR,
@@ -49,35 +51,53 @@ enum {
 
 /* --- valueitems --- */
 
-static valueitem_t value_resbox  = { VALTYPE_BOOL,     true,
-                                     { .field = { &resbox_enabled, 8, 24, 0 }} };
-static valueitem_t value_alpha   = { VALTYPE_BYTE,     true,
-                                     { .field = { &osdbg_settings, 32, VIDEOIF_OSDBG_ALPHA_SHIFT,  VIFLAG_UPDATE_VIDEOIF }} };
-static valueitem_t value_tint_cb = { VALTYPE_SBYTE_99, true,
-                                     { .field = { &osdbg_settings,  8, VIDEOIF_OSDBG_TINTCB_SHIFT,
-                                                  VIFLAG_UPDATE_VIDEOIF | VIFLAG_SBYTE }} };
-static valueitem_t value_tint_cr = { VALTYPE_SBYTE_99, true,
-                                     { .field = { &osdbg_settings,  8, VIDEOIF_OSDBG_TINTCR_SHIFT,
-                                                  VIFLAG_UPDATE_VIDEOIF | VIFLAG_SBYTE }} };
+static valueitem_t value_resbox   = { VALTYPE_BOOL,     true,
+                                      { .field = { &resbox_enabled,  8, 24, VIFLAG_REDRAW }} };
+static valueitem_t value_resbox_x = { VALTYPE_RESBOX_X, true,
+                                      { .field = { &resbox_x,        8, 24, 0 }} };
+static valueitem_t value_resbox_y = { VALTYPE_RESBOX_Y, true,
+                                      { .field = { &resbox_y,        8, 24, 0 }} };
+static valueitem_t value_alpha    = { VALTYPE_BYTE,     true,
+                                      { .field = { &osdbg_settings, 32, VIDEOIF_OSDBG_ALPHA_SHIFT,  VIFLAG_UPDATE_VIDEOIF }} };
+static valueitem_t value_tint_cb  = { VALTYPE_SBYTE_99, true,
+                                      { .field = { &osdbg_settings,  8, VIDEOIF_OSDBG_TINTCB_SHIFT,
+                                                   VIFLAG_UPDATE_VIDEOIF | VIFLAG_SBYTE }} };
+static valueitem_t value_tint_cr  = { VALTYPE_SBYTE_99, true,
+                                      { .field = { &osdbg_settings,  8, VIDEOIF_OSDBG_TINTCR_SHIFT,
+                                                   VIFLAG_UPDATE_VIDEOIF | VIFLAG_SBYTE }} };
 
 /* --- menu definition --- */
 
+static void osdset_draw(menu_t *menu);
+
 static menuitem_t osdset_items[] = {
   { "Mode Popup",       &value_resbox,   1, 0 }, // 0
-  { "BG Transparency",  &value_alpha,    2, 0 }, // 1
-  { "BG Tint Blue",     &value_tint_cb,  3, 0 }, // 2
-  { "BG Tint Red",      &value_tint_cr,  4, 0 }, // 3
-  { "IR Key Config...", NULL,            5, 0 }, // 4
-  { "Exit",             NULL,            7, 0 }, // 5
+  { " X Position",      &value_resbox_x, 2, 0 }, // 1
+  { " Y Position",      &value_resbox_y, 3, 0 }, // 2
+  { "BG Transparency",  &value_alpha,    4, 0 }, // 3
+  { "BG Tint Blue",     &value_tint_cb,  5, 0 }, // 4
+  { "BG Tint Red",      &value_tint_cr,  6, 0 }, // 5
+  { "IR Key Config...", NULL,            7, 0 }, // 6
+  { "Exit",             NULL,            9, 0 }, // 7
 };
 
 static menu_t osdset_menu = {
-  11, 11,
-  23, 9,
-  NULL,
+  11, 9,
+  23, 11,
+  osdset_draw,
   sizeof(osdset_items) / sizeof(*osdset_items),
   osdset_items
 };
+
+static void osdset_draw(menu_t *menu) {
+  if (resbox_enabled) {
+    osdset_items[MENUITEM_RESBOX_X].flags = 0;
+    osdset_items[MENUITEM_RESBOX_Y].flags = 0;
+  } else {
+    osdset_items[MENUITEM_RESBOX_X].flags = MENU_FLAG_DISABLED;
+    osdset_items[MENUITEM_RESBOX_Y].flags = MENU_FLAG_DISABLED;
+  }
+}
 
 void screen_osdsettings(void) {
   int current_item = 0;

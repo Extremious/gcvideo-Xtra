@@ -1,5 +1,11 @@
 # GCVideo #
 
+## This fork adds two extra settings to the OSD menu
+- "X Position" moves the resolution popup box horizontally.
+- "Y Position" moves the resolution popup box vertically.
+
+![OSD Settings menu](Firmware/doc/osd.png)
+
 GCVideo is a small series of FPGA boards and VHDL projects
 capable of converting the
 GameCube's Digital Video port signals to standard video signals
