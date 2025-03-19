@@ -67,6 +67,7 @@ static const cliprange_t clipranges[] = {
   [ VALTYPE_COLORMODE ]    = {     0,    3 -1 },
   [ VALTYPE_RESBOX_X ]     = {     0,   33 -1 },
   [ VALTYPE_RESBOX_Y ]     = {     0,   27 -1 },
+  [ VALTYPE_RESBOX_TIME ]  = {     1,   15 -1 },
 };
 
 static const uint8_t value_widths[] = {
@@ -84,6 +85,7 @@ static const uint8_t value_widths[] = {
   [ VALTYPE_COLORMODE ]    = 7,
   [ VALTYPE_RESBOX_X ]     = 6,
   [ VALTYPE_RESBOX_Y ]     = 6,
+  [ VALTYPE_RESBOX_TIME ]  = 6,
 };
 
 /* (un)draw marker on a menu item */
@@ -221,6 +223,7 @@ static void print_value(menu_t *menu, unsigned int itemnum) {
   case VALTYPE_SLINDEX:
   case VALTYPE_RESBOX_X:
   case VALTYPE_RESBOX_Y:
+  case VALTYPE_RESBOX_TIME:
     printf("%4d", value);
     break;
 

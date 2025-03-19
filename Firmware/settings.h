@@ -69,6 +69,7 @@ extern minibool     scanline_custom;
 extern minibool     crop_486_to_480;
 extern uint8_t      resbox_x;
 extern uint8_t      resbox_y;
+extern uint8_t      resbox_time;
 
 void set_all_modes(uint32_t flag, bool state);
 void update_scanlines(void);

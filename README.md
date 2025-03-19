@@ -1,8 +1,10 @@
 # GCVideo #
 
-## This fork adds two extra settings to the OSD menu
-- "X Position" moves the resolution popup box horizontally.
-- "Y Position" moves the resolution popup box vertically.
+## This fork adds four extra settings to the OSD menu
+- "X Position" and "Y Position" move the resolution popup box.
+- "Time" changes how many seconds the popup box is displayed.
+- "Hold Time" controls how quickly the GCVideo menu appears.  
+Increase to fix the 8bitDo Bluetooth receiver compatibility.
 
 ![OSD Settings menu](Firmware/doc/osd.png)
 

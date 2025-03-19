@@ -39,7 +39,6 @@
 #include "screens.h"
 #include "settings.h"
 
-#define RESBOX_TIME (5 * HZ)
 #define RESBOX_XS   12
 #define RESBOX_YS   3
 
@@ -54,7 +53,7 @@ void screen_idle(void) {
 
     /* check for menu button combination on controller */
     if ((pad_buttons & (PAD_L | PAD_R | PAD_X | PAD_Y)) == (PAD_L | PAD_R | PAD_X | PAD_Y) &&
-        time_after(now, pad_last_change + HZ)) {
+        time_after(now, pad_last_change + (resbox_time >> 4) * 100)) {
       if (pad_buttons & PAD_START) {
         /* restore defaults */
         settings_init();
@@ -87,7 +86,7 @@ void screen_idle(void) {
 
       /* print resolution box */
       if (resbox_enabled && current_videomode != VIDMODE_NONSTANDARD) {
-        resbox_timeout = now + RESBOX_TIME;
+        resbox_timeout = now + (resbox_time & 0x0F) * HZ;
         resbox_active  = true;
 
         osd_drawborder(resbox_x, resbox_y, RESBOX_XS, RESBOX_YS);

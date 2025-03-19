@@ -50,6 +50,7 @@ typedef enum {
   VALTYPE_COLORMODE,    // 0 to 3 shown as RGBF, RGBL, Y444, Y422
   VALTYPE_RESBOX_X,     // 0 to 33
   VALTYPE_RESBOX_Y,     // 0 to 27
+  VALTYPE_RESBOX_TIME,  // 1 to 15
 } valuetype_t;
 
 #define VIFLAG_REDRAW         (1<<0)

@@ -39,7 +39,7 @@
 #include "vsync.h"
 #include "settings.h"
 
-#define SETTINGS_VERSION 7 // bump if current reader cannot read older settings anymore
+#define SETTINGS_VERSION 8 // bump if current reader cannot read older settings anymore
 
 typedef struct {
   uint8_t  version;
@@ -63,6 +63,7 @@ typedef struct {
   int8_t   yshift;
   uint8_t  resbox_x;
   uint8_t  resbox_y;
+  uint8_t  resbox_time;
   // scanline settings are stored seperately
 } storedsettings_t;
 
@@ -112,6 +113,7 @@ minibool     scanline_custom;
 minibool     crop_486_to_480;
 uint8_t      resbox_x;
 uint8_t      resbox_y;
+uint8_t      resbox_time;
 
 static uint16_t current_setid;
 
@@ -273,6 +275,7 @@ void settings_load(void) {
   screen_y_shift     = set.st.yshift;
   resbox_x           = set.st.resbox_x;
   resbox_y           = set.st.resbox_y;
+  resbox_time        = set.st.resbox_time;
 
   spiflash_start_read(SETTINGS_OFFSET + ((current_setid + 2) << 8));
   for (unsigned int i = 256; i < SCANLINERAM_ENTRIES; i ++) {
@@ -311,6 +314,7 @@ void settings_save(void) {
   set.st.yshift                = screen_y_shift;
   set.st.resbox_x              = resbox_x;
   set.st.resbox_y              = resbox_y;
+  set.st.resbox_time           = resbox_time;
 
   memcpy(set.st.ir_codes, ir_codes, sizeof(ir_codes));
   memcpy(set.st.video_settings, video_settings, sizeof(video_settings));
@@ -367,6 +371,7 @@ void settings_init(void) {
   resbox_enabled = true;
   resbox_x       = RESBOX_X;
   resbox_y       = RESBOX_Y;
+  resbox_time    = 53;
 
   video_settings_global = VIDEOIF_SET_ENABLEREBLANK | VIDEOIF_SET_ENABLERESYNC |
                           VIDEOIF_SET_CABLEDETECT   | VIDEOIF_SET_CHROMAINTERP;
