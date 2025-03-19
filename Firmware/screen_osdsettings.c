@@ -80,7 +80,7 @@ static menuitem_t osdset_items[] = {
   { "Mode Popup",       &value_resbox,      1, 0 }, // 0
   { " X Position",      &value_resbox_x,    2, 0 }, // 1
   { " Y Position",      &value_resbox_y,    3, 0 }, // 2
-  { " Time",            &value_resbox_time, 4, 0 }, // 3
+  { "Hold Time" + 4,    &value_resbox_time, 4, 0 }, // 3
   { "Hold Time",        &value_hold_time,   5, 0 }, // 4
   { "BG Transparency",  &value_alpha,       6, 0 }, // 5
   { "BG Tint Blue",     &value_tint_cb,     7, 0 }, // 6
