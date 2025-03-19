@@ -54,7 +54,7 @@ enum {
 /* --- valueitems --- */
 
 static valueitem_t value_resbox      = { VALTYPE_BOOL,        true,
-                                         { .field = { &resbox_enabled,  8, 24, VIFLAG_REDRAW }} };
+                                         { .field = { &resbox_enabled,  8, 24, 0 }} };
 static valueitem_t value_resbox_x    = { VALTYPE_RESBOX_X,    true,
                                          { .field = { &resbox_x,        8, 24, 0 }} };
 static valueitem_t value_resbox_y    = { VALTYPE_RESBOX_Y,    true,
@@ -74,40 +74,26 @@ static valueitem_t value_tint_cr     = { VALTYPE_SBYTE_99,    true,
 
 /* --- menu definition --- */
 
-static void osdset_draw(menu_t *menu);
-
 static menuitem_t osdset_items[] = {
   { "Mode Popup",       &value_resbox,      1, 0 }, // 0
   { " X Position",      &value_resbox_x,    2, 0 }, // 1
   { " Y Position",      &value_resbox_y,    3, 0 }, // 2
-  { " Time",            &value_resbox_time, 4, 0 }, // 3
+  { "Hold Time" + 4,    &value_resbox_time, 4, 0 }, // 3
   { "Hold Time",        &value_hold_time,   5, 0 }, // 4
   { "BG Transparency",  &value_alpha,       6, 0 }, // 5
   { "BG Tint Blue",     &value_tint_cb,     7, 0 }, // 6
   { "BG Tint Red",      &value_tint_cr,     8, 0 }, // 7
-  { "IR Key Config...", NULL,               9, 0 }, // 8
+  { "IR",               NULL,               9, 0 }, // 8
   { "Exit",             NULL,              11, 0 }, // 9
 };
 
 static menu_t osdset_menu = {
   11, 7,
   23, 13,
-  osdset_draw,
+  NULL,
   sizeof(osdset_items) / sizeof(*osdset_items),
   osdset_items
 };
-
-static void osdset_draw(menu_t *menu) {
-  if (resbox_enabled) {
-    osdset_items[MENUITEM_RESBOX_X].flags    = 0;
-    osdset_items[MENUITEM_RESBOX_Y].flags    = 0;
-    osdset_items[MENUITEM_RESBOX_TIME].flags = 0;
-  } else {
-    osdset_items[MENUITEM_RESBOX_X].flags    = MENU_FLAG_DISABLED;
-    osdset_items[MENUITEM_RESBOX_Y].flags    = MENU_FLAG_DISABLED;
-    osdset_items[MENUITEM_RESBOX_TIME].flags = MENU_FLAG_DISABLED;
-  }
-}
 
 void screen_osdsettings(void) {
   int current_item = 0;

@@ -62,7 +62,7 @@ enum {
 static void about_draw(menu_t *menu);
 
 static menuitem_t about_items[] = {
-  { "Update Firmware", NULL, 7, 0 },
+  { "Update",          NULL, 7, 0 },
   { "Back",            NULL, 8, 0 },
 };
 

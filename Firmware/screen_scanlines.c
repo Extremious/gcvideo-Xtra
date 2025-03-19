@@ -100,7 +100,7 @@ static void scanline_draw(menu_t *menu);
 
 static menuitem_t scanline_items[] = {
   { "Scanline Profile", &value_profile,    1, 0 },
-  { " Full Custom",     &value_custom,     2, 0 },
+  { " Custom",          &value_custom,     2, 0 },
   { " Brightness",      &value_slstrength, 3, 0 },
   { " Hybrid Factor",   &value_hybrid,     4, 0 },
   { " Luminance",       &value_slluma,     5, 0 },
