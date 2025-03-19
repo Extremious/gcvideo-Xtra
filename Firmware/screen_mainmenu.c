@@ -69,7 +69,7 @@ static menuitem_t mainmenu_items[] = {
   { "Advanced Settings...",   NULL,                      12, 0 }, // 9
   { "Store Settings",         NULL,                      14, 0 }, // 10
   { "About...",               NULL,                      15, 0 }, // 11
-  { "Exit",                   NULL,                      16, 0 }, // 12
+  { "Save and Exit" + 9,      NULL,                      16, 0 }, // 12
 };
 
 static void mainmenu_draw(menu_t *menu);

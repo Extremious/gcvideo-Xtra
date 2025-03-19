@@ -50,14 +50,9 @@ void screen_irconfig(bool in_box) {
 
   if (in_box) {
     osd_clrscr();
-    osd_fillbox(6, 8, 32, 13, ' ' | ATTRIB_DIM_BG);
-    osd_drawborder(6, 8, 32, 13);
+    osd_fillbox(13, 10, 18, 8, ' ' | ATTRIB_DIM_BG);
+    osd_drawborder(13, 10, 18, 8);
   }
-
-  osd_setattr(true, false);
-  osd_putsat(12,  9, "IR Remote key config");
-  osd_putsat( 8, 18, "Push key on remote to assign");
-  osd_putsat( 8, 19, "or hardware button to cancel");
 
   ir_gotcommand = 0;
 

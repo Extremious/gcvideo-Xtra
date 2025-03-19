@@ -138,7 +138,7 @@ static menuitem_t outputset_items[] = {
   { "Volume",            &value_volume,      6, 0 }, // 5
   { "Mute",              &value_mute,        7, 0 }, // 6
   { "Analog Output",     &value_analogmode,  8, 0 }, // 7
-  { "Exit",              NULL,              10, 0 }, // 8
+  { "Save and Exit" + 9, NULL,              10, 0 }, // 8
 };
 
 static menu_t outputset_menu = {
@@ -157,7 +157,7 @@ static menuitem_t outputset_items[] = {
   { "  Display as 16:9", &value_169,         5, 0 }, // 4
   { "Volume",            &value_volume,      6, 0 }, // 5
   { "Mute",              &value_mute,        7, 0 }, // 6
-  { "Exit",              NULL,               9, 0 }, // 7
+  { "Save and Exit" + 9, NULL,               9, 0 }, // 7
 };
 
 static menu_t outputset_menu = {

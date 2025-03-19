@@ -46,7 +46,7 @@ static menuitem_t modeset_items[] = {
   { "Scanline Profile",       &modeset_value_slprofile,   3, 0 }, // 1
   { " Apply to",              &modeset_value_sleven,      4, 0 }, // 2
   { " Alternating Scanlines", &modeset_value_slalt,       5, 0 }, // 3
-  { "Exit",                   NULL,                       7, 0 }, // 4
+  { "Save and Exit" + 9,      NULL,                       7, 0 }, // 4
 };
 
 static menu_t modeset_menu = {
@@ -74,13 +74,13 @@ static void screen_modesettings(video_mode_t mode) {
 
 static menuitem_t allmodes_items[] = {
   // assumption: Entries use the same item IDs as video_mode_t
-  { "240p...", NULL, 1, 0 }, // 0
-  { "288p...", NULL, 2, 0 }, // 1
-  { "480i...", NULL, 3, 0 }, // 2
-  { "576i...", NULL, 4, 0 }, // 3
-  { "480p...", NULL, 5, 0 }, // 4
-  { "576p...", NULL, 6, 0 }, // 5
-  { "Exit",    NULL, 8, 0 }, // 6
+  { "240p...",           NULL, 1, 0 }, // 0
+  { "288p...",           NULL, 2, 0 }, // 1
+  { "480i...",           NULL, 3, 0 }, // 2
+  { "576i...",           NULL, 4, 0 }, // 3
+  { "480p...",           NULL, 5, 0 }, // 4
+  { "576p...",           NULL, 6, 0 }, // 5
+  { "Save and Exit" + 9, NULL, 8, 0 }, // 6
 };
 
 static menu_t allmodes_menu = {
