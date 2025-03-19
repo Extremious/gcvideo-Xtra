@@ -67,11 +67,11 @@ static valueitem_t value_ypos       = { VALTYPE_SBYTE_127, true,
 /* --- menu definition --- */
 
 static menuitem_t pictureset_items[] = {
-  { "Brightness",       &value_brightness, 1, 0 }, // 0
+  { " Brightness" + 1,  &value_brightness, 1, 0 }, // 0
   { "Contrast",         &value_contrast,   2, 0 }, // 1
   { "Saturation",       &value_saturation, 3, 0 }, // 2
-  { "X Position",       &value_xpos,       4, 0 }, // 3
-  { "Y Position",       &value_ypos,       5, 0 }, // 4
+  { " X Position" + 1,  &value_xpos,       4, 0 }, // 3
+  { " Y Position" + 1,  &value_ypos,       5, 0 }, // 4
   { "Reset",            NULL,              6, 0 }, // 5
   { "Save and Exit",    NULL,              8, 0 }, // 6
   { "Cancel",           NULL,              9, 0 }, // 7

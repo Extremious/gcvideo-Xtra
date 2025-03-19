@@ -1,0 +1,16 @@
+./obj-gc-dvi-main/gcvideo-sw-gc-dvi-main.elf  :
+.bss                   268   15604		15872	28
+
+
+./obj-wii-dvi-main/gcvideo-sw-wii-dvi-main.elf  :
+.bss                   268   15692		15960	-60
+
+
+./obj-gc-dual-main-DISABLE_CABLEDETECT/gcvideo-sw-gc-dual-main.elf  :
+.bss                   268   15752		16020	-120
+
+
+./obj-wii-dual-main/gcvideo-sw-wii-dual-main.elf  :
+.bss                   268   15836		16104	-204
+
+

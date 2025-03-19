@@ -78,7 +78,7 @@ static menuitem_t advanced_items[] = {
   { "Digital Color Format", &value_colormode,      5, 0 },
   { "Report 240p as 480i",  &value_spoofinterlace, 6, 0 },
   { "Sample Rate Hack",     &value_sampleratehack, 7, 0 },
-  { "Exit",                 NULL,                  9, 0 },
+  { "Save and Exit" + 9,    NULL,                  9, 0 },
 };
 
 static menu_t advanced_menu = {
